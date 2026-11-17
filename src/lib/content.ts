@@ -105,7 +105,7 @@ export function parsePageNumber(n: string): number | null {
 export const formatDate = (iso?: string | null, style: "long" | "medium" = "long") =>
   iso ? new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: style === "long" ? "long" : "short", day: "numeric", timeZone: "UTC" }) : "";
 
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://dementiatoday.net").replace(/\/$/, "");
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dementiatoday.net").replace(/\/$/, "");
 
 /** Meta description fallback: trims an excerpt to ~155 characters on a word boundary. */
 export function metaDescription(text?: string | null) {

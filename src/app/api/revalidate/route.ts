@@ -7,7 +7,7 @@ import { parseBody } from "next-sanity/webhook";
 type Payload = { _type?: string; path?: string | { current?: string } };
 
 /**
- * Sanity webhook target: https://dementiatoday.net/api/revalidate/ (keep the trailing slash),
+ * Sanity webhook target: https://www.dementiatoday.net/api/revalidate/ (keep the trailing slash),
  * signed with SANITY_REVALIDATE_SECRET.
  */
 export async function POST(req: NextRequest) {
