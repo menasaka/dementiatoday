@@ -50,5 +50,6 @@ Environment variables: `NEXT_PUBLIC_SANITY_PROJECT_ID=eb5rh6pq`, `NEXT_PUBLIC_SA
 `NEXT_PUBLIC_SITE_URL=https://www.dementiatoday.net`, `SANITY_REVALIDATE_SECRET` (also set on the Sanity
 webhook "Revalidate site" → `https://www.dementiatoday.net/api/revalidate/`, trailing slash required).
 
-Before switching DNS, the news auto-publisher (`dementiatoday-publisher`) must publish to Sanity
-instead of WordPress, otherwise new articles keep going to the old site.
+Live since 2026-11-16: dementiatoday.net redirects to www.dementiatoday.net (Vercel). New articles come from
+`dementiatoday-publisher`, which publishes straight to Sanity. Pushes to this repo have not been starting
+Vercel deployments by themselves; start one from the Vercel dashboard after pushing.
