@@ -47,9 +47,9 @@ for checking every URL after launch.
 ## Deploy (Vercel)
 
 Environment variables: `NEXT_PUBLIC_SANITY_PROJECT_ID=eb5rh6pq`, `NEXT_PUBLIC_SANITY_DATASET=production`,
-`NEXT_PUBLIC_SITE_URL=https://www.dementiatoday.net`, `SANITY_REVALIDATE_SECRET` (also set on the Sanity
-webhook "Revalidate site" → `https://www.dementiatoday.net/api/revalidate/`, trailing slash required).
+`NEXT_PUBLIC_SITE_URL=https://dementiatoday.net`, `SANITY_REVALIDATE_SECRET` (also set on the Sanity
+webhook "Revalidate site" → `https://dementiatoday.net/api/revalidate/`, trailing slash required).
 
-Live since 2026-11-16: dementiatoday.net redirects to www.dementiatoday.net (Vercel). New articles come from
+Live since 2026-11-16: www.dementiatoday.net redirects to dementiatoday.net (Vercel). New articles come from
 `dementiatoday-publisher`, which publishes straight to Sanity. Pushes to this repo have not been starting
 Vercel deployments by themselves; start one from the Vercel dashboard after pushing.
