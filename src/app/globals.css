@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/*
+ * Design language: "Kinship". A calm, legible companion for people living with memory loss
+ * and the families who care for them. Linen paper, deep navy ink, and the two colours of the
+ * Dementia Today logo: navy (primary) and leaf green (growth, support).
+ * Large type and generous spacing throughout, because many readers are older.
+ * Token names are shared with the sister sites: "dawn" is the primary accent, "glow"/"ice"
+ * the accents on dark backgrounds, "sage"/"sun"/"leaf" the green support tones.
+ */
+@theme {
+  --color-paper: #f6f4ee;
+  --color-paper-2: #edeae0;
+  --color-paper-3: #e1ddcf;
+  --color-white: #ffffff;
+  --color-ink: #0f2230;
+  --color-ink-2: #1f3341;
+  --color-ink-3: #3a4c58;
+  --color-body: #36454f;
+  --color-muted: #66737c;
+  --color-line: #e2ded2;
+  --color-line-2: #cfcabb;
+  --color-dawn: #00507f;
+  --color-dawn-2: #1d6c9e;
+  --color-dawn-soft: #e0ecf4;
+  --color-glow: #8fc7e6;
+  --color-sage: #2f7d32;
+  --color-sage-soft: #e3f1dc;
+  --color-leaf: #4fae44;
+  --color-sun: #4fae44;
+  --color-sun-soft: #e8f4e2;
+  --color-night: #052a42;
+  --color-night-2: #08334f;
+  --color-mist: #bcd0dc;
+  --color-ice: #b6e3a5;
+  --color-alert: #c0392b;
+  --color-alert-soft: #fbe6e2;
+
+  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-source-serif), Georgia, serif;
+  --font-accent: var(--font-source-serif), Georgia, serif;
+  --font-serif: var(--font-literata), Georgia, serif;
+  --font-mono: var(--font-atkinson-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-trace: trace 6s linear infinite;
+  --animate-blip: blip 1.6s var(--ease-out-soft) infinite;
+  @keyframes trace {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -1200;
+    }
+  }
+  @keyframes blip {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a {
+    @apply text-inherit no-underline;
+  }
+  ::selection {
+    @apply bg-glow/60 text-ink;
+  }
+  :focus-visible {
+    @apply rounded-sm outline-2 outline-offset-2 outline-dawn;
+  }
+}
+
+@utility container-site {
+  @apply mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8;
+}
+
+@utility container-read {
+  @apply mx-auto w-full max-w-[720px] px-4 sm:px-6;
+}
+
+/* Small uppercase label. */
+@utility kicker {
+  @apply font-sans text-[12.5px] font-bold tracking-[0.14em] text-sage uppercase;
+}
+
+/* Display headline: soft optical serif. */
+@utility display {
+  @apply font-display font-semibold tracking-[-0.022em] text-balance text-ink;
+  font-variation-settings: "opsz" 60;
+}
+
+@utility headline {
+  @apply font-display font-semibold tracking-[-0.012em] text-balance text-ink;
+  font-variation-settings: "opsz" 32;
+}
+
+/* Soft italic for single accent words inside display headlines. */
+@utility accent {
+  @apply font-accent font-normal tracking-[-0.01em] italic;
+}
+
+/* Tabular numbers for readings and stats. */
+@utility numeric {
+  @apply font-mono tracking-[-0.02em];
+  font-variant-numeric: tabular-nums;
+}
+
+/* Faint grid for dark bands. */
+@utility grid-lines {
+  background-image:
+    linear-gradient(rgba(182, 227, 165, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143, 199, 230, 0.05) 1px, transparent 1px);
+  background-size: 64px 48px;
+}
+
+/* Dotted paper for light bands. */
+@utility dot-grid {
+  background-image: radial-gradient(rgba(15, 34, 48, 0.09) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+/* Soft card shadow. */
+@utility lift-shadow {
+  box-shadow:
+    0 1px 2px rgba(5, 42, 66, 0.05),
+    0 14px 34px -14px rgba(5, 42, 66, 0.22);
+}
+
+/* Link underline that grows on hover (used on card titles). */
+@utility link-sweep {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.45s var(--ease-out-soft);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Faint paper grain for dark bands. */
+@utility grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Article body. */
+@utility prose-site {
+  @apply font-serif text-[19px] leading-[1.78] text-body sm:text-[20.5px];
+  & > * + * {
+    @apply mt-6;
+  }
+  & h2 {
+    @apply mt-14 mb-4 font-display text-[31px] leading-[1.15] font-semibold tracking-[-0.018em] text-ink;
+  }
+  & h3 {
+    @apply mt-10 mb-3 font-display text-[24px] leading-snug font-semibold tracking-[-0.01em] text-ink;
+  }
+  & h4 {
+    @apply mt-8 mb-2 font-sans text-[15px] font-semibold tracking-[0.06em] text-ink uppercase;
+  }
+  & ul {
+    @apply list-none pl-0;
+  }
+  & ul > li {
+    @apply relative pl-7;
+  }
+  & ul > li::before {
+    content: "";
+    @apply absolute top-[0.66em] left-1 size-[9px] rounded-[2px_9px_2px_9px] bg-leaf;
+  }
+  & ol {
+    @apply list-decimal pl-7 marker:font-sans marker:text-[0.85em] marker:font-semibold marker:text-sage;
+  }
+  & li + li {
+    @apply mt-3;
+  }
+  & a {
+    @apply text-ink underline decoration-dawn/50 decoration-[1.5px] underline-offset-[4px] transition-colors hover:text-dawn hover:decoration-dawn;
+    overflow-wrap: anywhere;
+  }
+  & blockquote {
+    @apply my-10 border-l-4 border-leaf pl-6 font-accent text-[26px] leading-[1.4] text-ink italic sm:text-[29px];
+  }
+  & strong {
+    @apply font-semibold text-ink;
+  }
+}
+
+/* Drop cap on the first paragraph of an article. */
+@utility dropcap {
+  & > p:first-of-type::first-letter {
+    @apply float-left mt-[0.06em] mr-3 font-display text-[4.4em] leading-[0.8] font-semibold text-dawn;
+  }
+}
