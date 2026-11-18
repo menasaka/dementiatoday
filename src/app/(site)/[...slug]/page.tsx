@@ -191,7 +191,7 @@ export default async function DocPage({ params }: PageProps<"/[...slug]">) {
       />
 
       <article className="container-site pt-8 sm:pt-12">
-        <div className="grid gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,1fr)_18.75rem] xl:grid-cols-[14.5rem_minmax(0,1fr)_18.75rem]">
+        <div className="grid gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,1fr)_18.75rem] xl:grid-cols-[14.5rem_minmax(0,1fr)_18.75rem] 2xl:grid-cols-[16rem_minmax(0,1fr)_22rem] 2xl:gap-x-12">
           {/* Main column */}
           <div className="min-w-0 xl:col-start-2 xl:row-start-1">
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-[13px] text-muted">

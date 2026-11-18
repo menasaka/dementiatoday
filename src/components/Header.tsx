@@ -98,7 +98,7 @@ export function Header({ settings }: { settings: SiteSettings }) {
         {/* Tier 2: main navigation */}
         <nav aria-label="Main" className="hidden border-t border-line lg:block">
           <ul className="container-site flex h-[52px] items-center gap-1">
-            {settings.nav.map((item) => (
+            {settings.nav.map((item, i, all) => (
               <li key={item.label} className="group relative">
                 {item.href ? (
                   <Link href={item.href} className={navLink}>
@@ -112,7 +112,7 @@ export function Header({ settings }: { settings: SiteSettings }) {
                   </button>
                 )}
                 {item.children?.length ? (
-                  <div className="invisible absolute top-full left-0 z-50 translate-y-1 pt-2 opacity-0 transition-all duration-200 ease-out-soft group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className={`invisible absolute top-full z-50 ${i >= all.length - 2 ? "right-0" : "left-0"} translate-y-1 pt-2 opacity-0 transition-all duration-200 ease-out-soft group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100`}>
                     <div className="w-[320px] overflow-hidden rounded-2xl border border-line bg-white shadow-[0_24px_60px_-12px_rgba(60,45,20,0.22)]">
                       <p className="kicker border-b border-line px-5 pt-4 pb-3">{item.label}</p>
                       <ul className="p-2">
